@@ -13,6 +13,7 @@ resource "aws_instance" "web" {
 
 
 
+
 resource "aws_security_group" "test_test_test" {
   name        = "new_group"
   description = "LOLOLO"
