@@ -5,10 +5,31 @@ resource "aws_instance" "web" {
   #vpc_security_group_ids -> security_group   
   key_name = "kali_main_rsa_aws"
 
+  subnet_id = "subnet-0d0bbdd2392f95a9b" 
+
+  associate_public_ip_address = true
+  user_data = <<-EOF
+            #!/bin/bash
+              sudo apt-get update -y
+              
+              sudo apt-get install -y docker.io
+
+              sudo systemctl start docker
+              sudo systemctl enable docker
+
+              sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+              sudo chmod +x /usr/local/bin/docker-compose
+              EOF
+
+
+
 
   tags = {
     Name = "helloWorld"
   }
+}
+output "instance_ip_addr" {
+  value = aws_instance.web.public_ip
 }
 
 
