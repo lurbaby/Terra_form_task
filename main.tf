@@ -8,6 +8,7 @@ resource "aws_instance" "web" {
   subnet_id = "subnet-0d0bbdd2392f95a9b" 
 
   associate_public_ip_address = true
+  #install docker+docker-compose
   user_data = <<-EOF
             #!/bin/bash
               sudo apt-get update -y
