@@ -15,8 +15,23 @@ resource "aws_instance" "web" {
   }
 }
 
+resource "random_password" "pass" {
+  length  = "14"
+  special = true
+  # override_special переписати на нові 
+  
+}
+
+
+
+
+
 data "aws_caller_identity" "my_user"{
 }
+
+# data "aws_secretsmanager_secret" "secrets" {
+#   arn  = "arn:aws:secretsmanager:eu-central-1:288991933989:secret:my-test-secret"
+# }
 
 
 
