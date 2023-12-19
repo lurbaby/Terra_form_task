@@ -23,15 +23,15 @@ resource "random_password" "pass" {
 }
 
 
+resource "aws_secretsmanager_secret" "secrets" {
+  name = "my-test-secret2"
+}
 
 
 
 data "aws_caller_identity" "my_user"{
 }
 
-# data "aws_secretsmanager_secret" "secrets" {
-#   arn  = "arn:aws:secretsmanager:eu-central-1:288991933989:secret:my-test-secret"
-# }
 
 
 

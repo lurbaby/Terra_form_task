@@ -10,3 +10,7 @@ output "get_pass" {
     value = random_password.pass.result
     sensitive = true
 }
+
+# output "get_secret"{
+#     value = aws_secretsmanager_secret.secrets.name
+# }
