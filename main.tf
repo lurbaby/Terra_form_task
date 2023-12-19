@@ -1,46 +1,27 @@
 resource "aws_instance" "web" {
-  ami             = "ami-06dd92ecc74fdfb36"
-  instance_type   = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.test_test_test.id]
+  ami             = var.ami
+  instance_type   = var.instance_type
+  vpc_security_group_ids = [aws_security_group.default_group.id]
   #vpc_security_group_ids -> security_group   
-  key_name = "kali_main_rsa_aws"
-
-  subnet_id = "subnet-0d0bbdd2392f95a9b" 
+  key_name = var.key_name
+  subnet_id = var.subnet_id 
 
   associate_public_ip_address = true
   #install docker+docker-compose
-  user_data = <<-EOF
-            #!/bin/bash
-              sudo apt-get update -y
-              
-              sudo apt-get install -y docker.io
-
-              sudo systemctl start docker
-              sudo systemctl enable docker
-
-              sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-              sudo chmod +x /usr/local/bin/docker-compose
-              EOF
-
-
-
+  user_data = var.user_data_install_docker
 
   tags = {
     Name = "helloWorld"
   }
 }
-output "instance_ip_addr" {
-  value = aws_instance.web.public_ip
+
+data "aws_caller_identity" "my_user"{
 }
 
 
 
-
-resource "aws_security_group" "test_test_test" {
-  name        = "new_group"
-  description = "LOLOLO"
-  vpc_id      = "vpc-060de73c8ae831086"
-
+resource "aws_security_group" "default_group" {
+  
   ingress {
     description      = "HTTPS"
     from_port        = 443
@@ -77,6 +58,6 @@ resource "aws_security_group" "test_test_test" {
   }
 
   tags = {
-    Name = "test_test_test"
+    Name = "default_group"
   }
 }
