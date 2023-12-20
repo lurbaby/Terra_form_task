@@ -23,11 +23,6 @@ resource "random_password" "pass" {
 }
 
 
-resource "aws_secretsmanager_secret" "secrets" {
-  name = "my-test-secret2"
-}
-
-
 
 data "aws_caller_identity" "my_user"{
 }
