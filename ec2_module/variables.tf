@@ -40,3 +40,8 @@ variable user_data_install_docker {
               EOF
 
 }
+
+variable "security_group_id"{
+    type = string
+
+}

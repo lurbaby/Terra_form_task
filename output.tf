@@ -1,6 +1,3 @@
-output "instance_ip_addr" {
-  value = aws_instance.web.public_ip
-}
 
 output "get_name" {
   value = split("/", data.aws_caller_identity.my_user.arn)[1]
@@ -9,4 +6,13 @@ output "get_name" {
 output "get_pass" {
     value = random_password.pass.result
     sensitive = true
+}
+
+output "ec2_ip" {
+  value = module.ec2_module.instance_ip_addr
+
+}
+output "sg_group" {
+  value = module.sg_module.security_group_id
+
 }
