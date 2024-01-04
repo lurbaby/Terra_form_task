@@ -13,6 +13,11 @@ output "ec2_ip" {
 
 }
 output "sg_group" {
-  value = module.sg_module.security_group_id
+  value = module.sg_module.security_group_id 
 
 }
+output "iam_instance_profile"{
+  value = aws_iam_instance_profile.ec2_secrets_profile.name
+
+}
+
