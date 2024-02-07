@@ -1,6 +1,7 @@
 
 module "sg_module"{
   source = "./sg_module"
+  vpc_id = module.ec2_module.vpc_id
 }
 
 module "s3_module" {
@@ -47,7 +48,7 @@ resource "aws_iam_policy" "secrets_policy" {
           "secretsmanager:GetSecretValue",
         ],
         Effect = "Allow",
-        Resource = "arn:aws:secretsmanager:eu-central-1:288991933989:secret:test_1"
+        Resource = "arn:aws:secretsmanager:eu-central-1:288991933989:secret:test_4"
       },
     ]
   })
@@ -81,4 +82,11 @@ resource "random_password" "pass" {
 }
 
 data "aws_caller_identity" "my_user"{
+}
+
+
+resource "aws_route" "internet_access" {
+  route_table_id         = "rtb-0f1dbc5411fec0551" # ID вашої маршрутизаційної таблиці
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = "igw-071950022c22de4ce"
 }

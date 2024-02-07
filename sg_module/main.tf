@@ -1,5 +1,7 @@
-resource "aws_security_group" "default_group" {
+resource "aws_security_group" "lurbaby" {
   
+  vpc_id = "vpc-0d6e69ecc0101901d"
+
   ingress {
     description      = "HTTPS"
     from_port        = 443
@@ -36,6 +38,6 @@ resource "aws_security_group" "default_group" {
   }
 
   tags = {
-    Name = "default_group"
+    Name = "lurbaby"
   }
 }

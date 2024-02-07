@@ -1,12 +1,12 @@
 variable name {
-    default     = "default_group"
+    default     = "lurbaby"
 }
 variable vpc_id{
-    default      = "vpc-060de73c8ae831086"
+    default      = "vpc-0d6e69ecc0101901d"
     
 }
 variable ami {
-    default ="ami-06dd92ecc74fdfb36"
+    default ="ami-0faab6bdbac9486fb"
  
 }
 
@@ -15,7 +15,7 @@ variable instance_type {
 }
 
 variable subnet_id{
-    default = "subnet-0d0bbdd2392f95a9b" 
+    default = "subnet-0977cf3277542ac72" 
 
 }
 
