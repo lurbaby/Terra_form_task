@@ -19,6 +19,11 @@ module "elb_module"{
 
 }
 
+# module "rds_module" {
+#   source = "./rds_module"
+#   security_group_id = module.sg_module.security_group_id
+# }
+
 
 resource "aws_iam_role" "ec2_secrets_role" {
   name = "ec2-secrets-role"
@@ -72,6 +77,13 @@ module "ec2_module" {
 
 
 }
+module "asg_module" {
+  source = "./asg_module"
+  ami = module.ec2_module.ami
+  instance_type = module.ec2_module.instance_type
+  subnet_id = module.ec2_module.subnet_id
+}
+
 
 
 resource "random_password" "pass" {

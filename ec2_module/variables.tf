@@ -7,7 +7,7 @@ variable vpc_id{
 }
 variable ami {
     default ="ami-0faab6bdbac9486fb"
- 
+  
 }
 
 variable instance_type {
